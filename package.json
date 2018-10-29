@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/ericz99/auth-bot/issues"
   },
-  "homepage": "https://github.com/ericz99/auth-bot#readme"
+  "homepage": "https://github.com/ericz99/auth-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "console-stamp": "^0.2.7",
+    "discord.js": "^11.4.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "sqlite3": "^4.0.3"
+  }
 }
