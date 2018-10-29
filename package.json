@@ -1,0 +1,19 @@
+{
+  "name": "auth-bot",
+  "version": "1.0.0",
+  "description": "Authentication Discord Bot, using JWT token to authentication user through the backend. Also, keep track of verify users.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericz99/auth-bot.git"
+  },
+  "author": "@ericz99",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericz99/auth-bot/issues"
+  },
+  "homepage": "https://github.com/ericz99/auth-bot#readme"
+}
