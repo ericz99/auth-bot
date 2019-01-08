@@ -14,9 +14,9 @@ Authentication License Bot + Memberships Features
 
 ## Pictures
 
-![alt text](https://cdn.discordapp.com/attachments/531983220741242881/532324390478544916/0eda14a2713963c40be17918b59c750b.png)
+![alt text](https://gyazo.com/2c9576ac766422994766777b1d472703)
 
-![alt text](https://cdn.discordapp.com/attachments/531983220741242881/532324958550884353/e4597b254ad7a0db368befc9eca0f2d3.png)
+![alt text](https://gyazo.com/e4597b254ad7a0db368befc9eca0f2d3)
 
 ## Instruction
 
