@@ -2,6 +2,22 @@
 
 Authentication License Bot + Memberships Features
 
+## Features
+
+- Membership Bundle Creator
+- Allow Owner to customize their own membership roles.
+- Allow Owner to generate Lifetime keys or any keys. And those specific keys are what it suppose to be, either Lifetime or Renewal...
+- Allow Owner to remove membership option.
+- Allow Owner to use either membership. (Renewal is the default choice)
+- Plenty of commands that Owner can use.
+- More to come...
+
+## Pictures
+
+![alt text](https://cdn.discordapp.com/attachments/531983220741242881/532324390478544916/0eda14a2713963c40be17918b59c750b.png)
+
+![alt text](https://cdn.discordapp.com/attachments/531983220741242881/532324958550884353/e4597b254ad7a0db368befc9eca0f2d3.png)
+
 ## Instruction
 
 - npm install
@@ -13,7 +29,7 @@ Authentication License Bot + Memberships Features
 - If user key expired after 30 days, they have to renew or they will be booted off the server after 3 days
 - You "OWNER" are able to delete anyone keys and boot them off the server
 - If user wants to renew just dm bot => +renew emailhere
-- User can choose any email, its just gonna send them a new key
+- User can choose any email, its just gonna send them a new key after making a purchase
 - OWNER can generate there own license key if they don't have. 
 
 ## Errors/Bugs
