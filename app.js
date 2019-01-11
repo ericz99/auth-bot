@@ -327,6 +327,56 @@ mongoose.connect('mongodb://localhost/auth-bot', { useNewUrlParser: true, useCre
 });
 
 // check everyday to see if any user membership is over... every 20 hours
-function checkDaily() { }
+function checkDaily() {
+  schedule.scheduleJob({ hour: 11, minute: 59 }, () => {
+    let tokens = [];
+
+    fs.readFile('keys.txt', 'utf-8', (err, data) => {
+      if (!err) {
+        const keys = data.split('\r\n');
+        for (let i = 0; i < keys.length; i++) {
+          User.find({ userKey: keys[i] })
+            .then(users => {
+              if (users) {
+                users.map(user => {
+                  const currentDate = new Date();
+                  const expiredDate = user['expiredDate'];
+                  const userID = user['discordUserID'];
+
+                  if (currentDate == expiredDate || currentDate < expiredDate) {
+                    // set them unauthenicated 
+
+                    // remove all roles 
+
+                    // send them dm saying their key expired
+
+                    client.guilds.array()[0].members.forEach(member => {
+                      let isMember = member.roles.find(role => role.name === 'Member');
+                      if (member.user.id == userID) {
+                        member.removeRoles(["488838625346191361", "506674080699777066"]); // remove member role
+
+                        const infoEmbed = new Discord.RichEmbed()
+                          .setAuthor("Authentication Bot ( NOTIFICATION )")
+                          .setColor("#0040ff")
+                          .setDescription(`Your membership has expired. If you would like to renew please type !renew <youremail@gmail.com> and follow further instruction. Thank you!`)
+
+                        // send user a notification about their membership 
+                        return member.send(infoEmbed);
+                      }
+                    });
+                  } else {
+                    console.debug(`All user is authenicated...`);
+                  }
+                })
+              }
+            }).catch(err => console.log(err))
+        }
+      }
+    });
+  });
+}
+
+// check daily every 12 hours
+checkDaily();
 
 client.login(token);
