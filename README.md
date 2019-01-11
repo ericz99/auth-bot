@@ -12,12 +12,6 @@ Authentication License Bot + Memberships Features
 - Plenty of commands that Owner can use.
 - More to come...
 
-## Pictures
-
-![alt text](https://gyazo.com/2c9576ac766422994766777b1d472703)
-
-![alt text](https://gyazo.com/e4597b254ad7a0db368befc9eca0f2d3)
-
 ## Instruction
 
 - npm install
