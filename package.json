@@ -4,7 +4,8 @@
   "description": "Authentication Discord Bot, using JWT token to authentication user through the backend. Also, keep track of verify users.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,15 @@
     "discord.js": "^11.4.2",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
-    "sqlite3": "^4.0.3"
+    "knex": "^0.15.2",
+    "moment": "^2.23.0",
+    "mongoose": "^5.4.2",
+    "mysql": "^2.16.0",
+    "node-schedule": "^1.3.1",
+    "sqlite3": "^4.0.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }
