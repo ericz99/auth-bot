@@ -1,7 +1,7 @@
 {
   "prefix": "+",
   "token": "NTA2NjcwMzE1NDU2Mjk5MDEw.DxZcfw.3h3NGsLcu0IttOQvmZjFH2A6pC8",
-  "paypal_redirect": "",
+  "paypal_redirect": "https://www.paypal.com",
   "memberships": [
     "Renewal",
     "Lifetime",

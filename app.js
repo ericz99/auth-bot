@@ -8,7 +8,7 @@ require('console-stamp')(console, {
 });
 
 const Discord = require("discord.js");
-const { prefix, token, colors } = require("./config.example.json");
+const { prefix, token, colors, paypal_redirect } = require("./config.example.json");
 const client = new Discord.Client();
 const uuid = require('uuid/v4');
 const fs = require('fs');
@@ -70,18 +70,39 @@ mongoose.connect('mongodb://localhost/auth-bot', { useNewUrlParser: true, useCre
       process.exit(1);
     });
 
+    client.on('error', console.error);
+
+    // reconnectting
+    client.on('reconnecting', () => console.log("Server is reconnecting..."));
+
+    // if client is destryoed, you can catch that by reconnecting or relogging the bot back in the server
+    client.destroy().then(() => client.login(token));
+
     client.on("message", msg => {
+      // ping bot
+      if (msg.channel.type == 'dm' && msg.content.startsWith(prefix + 'ping')) {
+        const successEmbed = new Discord.RichEmbed()
+          .setAuthor("Authentication Bot ( ONLINE )")
+          .setColor("#9b42f4")
+          .addField("Online: ", true)
+          .addField("Ping", `${Math.round(client.ping)}ms`)
+
+        return msg.author.send(successEmbed);
+      }
+
+      // help 
       if (msg.channel.type == "dm" && msg.content.startsWith(prefix + 'help')) {
         let helpEmbed = new Discord.RichEmbed()
           .setAuthor("Authentication Instruction ( DM ONLY )")
           .setColor("#9b42f4")
           .setDescription('Please use the following commands to authenicate yourself...')
           .addField('Activiation Command: ', "+activate <license>")
-          .addField('Renewal Command: ', "+renew <youremail@gmail.com>")
+          .addField('Renewal Command: ', "+renew")
           .addField("Membership Creator ( ONLY ADMIN USAGE ): ", "+add <membership role>")
           .addField("Membership Removal ( ONLY ADMIN USAGE ): ", "+remove <membership role>")
           .addField("List of memberships: ", "+show")
           .addField('Admin Generate Licenses ( ONLY ADMIN USAGE ): ', '+gen <quantity>')
+          .addField("Check if bot is online: ", "+ping")
 
         return msg.author.send(helpEmbed);
       }
@@ -160,7 +181,13 @@ mongoose.connect('mongodb://localhost/auth-bot', { useNewUrlParser: true, useCre
                       if (err) return err;
                     });
                 } else {
-                  return msg.author.send(`Invalid License! Please contact admin now! :x:`);
+                  const failureEmbed = new Discord.RichEmbed()
+                    .setAuthor("Authentication Bot ( FAILURE )")
+                    .setColor("#cc0000")
+                    .addField("Failed to authenticate: ", license)
+                    .addField("Reason: ", "License does not exist :anguished:")
+
+                  return msg.author.send(failureEmbed);
                 }
 
                 // check if user membership is over
@@ -175,15 +202,17 @@ mongoose.connect('mongodb://localhost/auth-bot', { useNewUrlParser: true, useCre
 
       /* Renewal Membership */
       if (msg.channel.type == 'dm' && msg.content.startsWith(prefix + 'renew')) {
-        const userEmail = msg.content.split(" ")[1];
+        const infoEmbed = new Discord.RichEmbed()
+          .setAuthor("Authentication Bot ( RENEWAL )")
+          .setColor("#9b42f4")
+          .setDescription(`To renew membership please click on [this](${paypal_redirect}) following link!`)
+        return msg.author.send(infoEmbed);
 
         // check if user is not authenticated if user is not authenticated then give them your paypal redirect link
 
         // then simply replace the old key with new key
 
         // then add role back
-
-        return msg.author.send('Here\'s the paypal link to renew your license!');
       }
 
       /* Memberships Creator */
@@ -326,7 +355,7 @@ mongoose.connect('mongodb://localhost/auth-bot', { useNewUrlParser: true, useCre
   }
 });
 
-// check everyday to see if any user membership is over... every 20 hours
+// check everyday to see if any user membership is over... every 12 hours
 function checkDaily() {
   schedule.scheduleJob({ hour: 11, minute: 59 }, () => {
     let tokens = [];
@@ -342,28 +371,32 @@ function checkDaily() {
                   const currentDate = new Date();
                   const expiredDate = user['expiredDate'];
                   const userID = user['discordUserID'];
+                  const isAuthenicated = user['authenicated'];
 
-                  if (currentDate == expiredDate || currentDate < expiredDate) {
+                  if (currentDate == expiredDate || currentDate > expiredDate) {
                     // set them unauthenicated 
+                    user.set({ authenicated: false });
+                    // save it to the db
+                    user.save()
+                      .then((err) => {
+                        if (!err) {
+                          client.guilds.array()[0].members.forEach(member => {
+                            let isMember = member.roles.find(role => role.name === 'Member');
+                            if (member.user.id == userID) {
+                              // remove all roles 
+                              member.removeRoles(["488838625346191361", "506674080699777066"]); // remove member role
 
-                    // remove all roles 
+                              const infoEmbed = new Discord.RichEmbed()
+                                .setAuthor("Authentication Bot ( NOTIFICATION )")
+                                .setColor("#0040ff")
+                                .setDescription(`Your membership has expired. If you would like to renew please type !renew <youremail@gmail.com> and follow further instruction. Thank you!`)
 
-                    // send them dm saying their key expired
-
-                    client.guilds.array()[0].members.forEach(member => {
-                      let isMember = member.roles.find(role => role.name === 'Member');
-                      if (member.user.id == userID) {
-                        member.removeRoles(["488838625346191361", "506674080699777066"]); // remove member role
-
-                        const infoEmbed = new Discord.RichEmbed()
-                          .setAuthor("Authentication Bot ( NOTIFICATION )")
-                          .setColor("#0040ff")
-                          .setDescription(`Your membership has expired. If you would like to renew please type !renew <youremail@gmail.com> and follow further instruction. Thank you!`)
-
-                        // send user a notification about their membership 
-                        return member.send(infoEmbed);
-                      }
-                    });
+                              // send user a notification about their membership 
+                              return member.send(infoEmbed);
+                            }
+                          });
+                        }
+                      }).catch(err => console.debug(err))
                   } else {
                     console.debug(`All user is authenicated...`);
                   }
