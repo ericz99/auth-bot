@@ -29,7 +29,7 @@ function generateLicense(quantity) {
   }
 }
 
-mongoose.connect('mongodb://localhost/auth-bot', { useNewUrlParser: true, useCreateIndex: true }, (err) => {
+mongoose.connect(`mongodb://${process.env.USERNAME}:${process.env.PASS}@ds117816.mlab.com:17816/auth-bot`, { useNewUrlParser: true, useCreateIndex: true }, (err) => {
   if (!err) {
     client.on("ready", () => {
       client.user.setPresence({
