@@ -154,7 +154,7 @@ mongoose.connect(`mongodb://${process.env.USERNAME}:${process.env.PASS}@ds117816
                             const member = guild.member(msg.author);
                             if (member) {
                               // after successfully authenicated, give user role => access for only 30 days
-                              member.addRoles(["488838625346191361", "506674080699777066"]);
+                              member.addRoles(["557407798963732491", "557408368390570064"]);
 
                               const successEmbed = new Discord.RichEmbed()
                                 .setAuthor("Authentication Bot ( SUCCESS )")
