@@ -412,4 +412,4 @@ function checkDaily() {
 // check daily every 12 hours
 checkDaily();
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
