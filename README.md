@@ -17,7 +17,7 @@ Authentication License Bot + Memberships Features + Renewal Features
   # Beautiful UI design
   # and many more...
 # Pricing: TBA
-# DM on twitter if you want first dip! :) (It's not ready for beta yet, but will have yall updated!)
+# DM on twitter if you need more info!
 ```
 
 ## Features
