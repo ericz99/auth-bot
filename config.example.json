@@ -1,12 +1,7 @@
 {
   "prefix": "+",
-  "token": "NTA2NjcwMzE1NDU2Mjk5MDEw.DxZcfw.3h3NGsLcu0IttOQvmZjFH2A6pC8",
+  "mongoURI": "mongodb://localhost/auth-db",
+  "token": "",
   "paypal_redirect": "https://www.paypal.com",
-  "memberships": [
-    "Renewal",
-    "Lifetime",
-    "F&F",
-    "Beta",
-    "Tester"
-  ]
+  "memberships": ["Renewal", "Lifetime", "F&F", "Beta", "Tester"]
 }

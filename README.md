@@ -2,6 +2,23 @@
 
 Authentication License Bot + Memberships Features + Renewal Features
 
+## NEW(IN WORK...)
+
+```
+# I am currently implementing Auth Bot V2 w/ Custom Dashboard integrated! It will come with everything that in V1, but new features!
+# List of Features:
+  # Discord & Local Authentication for customers
+  # Easy access to user dashboard
+  # Admin portal
+  # License management
+  # Ability to deactiviate license + unlink email
+  # Customizable settings for customer + admin
+  # Auto renewal system + cancel subscriptions
+  # Beautiful UI design
+  # and many more...
+# Pricing: TBA
+```
+
 ## Features
 
 - Membership Bundle Creator
@@ -15,16 +32,26 @@ Authentication License Bot + Memberships Features + Renewal Features
 ## Instruction
 
 - npm install
-- npm run dev or npm run build or pm2 start(run forever)
+- npm run dev or npm run build or pm2 start (to run it forever in your local pc!)
+- change config.example.json => config.json
+- everything in the config.json must be filled in.
+  - for mongoURI, you can leave as default or create an mlab account and get a cloud DB instead of using local (its free btw).
+
+## Images
+
+![1](https://i.imgur.com/3cAHvQQ.png)
 
 ## Usage
 
+- Type +help command, and it will prompt you with list of commands
+- Give the discord bot, a staff role or anything that is better than a member role
+- If user key expires, bot removes the role.
 - There's only one package and that is renewal package - one key is good up to 30 days.
 - If user key expired after 30 days, they have to renew or they will be booted off the server after 3 days(coming soon...)
 - You "OWNER" are able to delete anyone keys and boot them off the server
-- If user wants to renew just dm bot => +renew emailhere
-- User can choose any email, its just gonna send them a new key after making a purchase
-- OWNER can generate there own license key if they don't have. 
+- If user wants to renew just dm bot => +renew emailhere (coming soon...)
+- User can choose any email, its just gonna send them a new key after making a purchase (coming soon...)
+- OWNER can generate there own license key if they don't have.
 
 ## Q/A
 
@@ -33,16 +60,13 @@ Authentication License Bot + Memberships Features + Renewal Features
 - How do I handle if key surpassed 30 days?
   You don't have to worry because the bot does everything for you.
 - What type of membership option do I have?
-  The only option you have so far is renewal. 
+  Currently stripe and paypal is not implemented.
 - What happen if the user key expired?
-  User will have to renew, and depending how you will renew it, its totally up to you, all you need to do is post a link in 
-  config.json that will redirect user to paypal purchase and "you" should send them email for their new key. Then, simply place new
-  key in keys.txt
+  As of now, they will simply lose role, and will have to get a new license in order to gain access again.
 - Is the auth bot protected?
   Yes, it is heavily protected, and a lot of error handling + security work. There shouldn't be any problem with the auth bot.
 - I still have questions?
   Simply dm on twitter.
-
 
 ## Errors/Bugs
 
@@ -51,3 +75,17 @@ Authentication License Bot + Memberships Features + Renewal Features
 ## Social Media
 
 Follow me https://twitter.com/washed_kid on twitter!
+
+## License
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2018 Eric Zhang
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
