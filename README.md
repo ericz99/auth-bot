@@ -17,6 +17,7 @@ Authentication License Bot + Memberships Features + Renewal Features
   # Beautiful UI design
   # and many more...
 # Pricing: TBA
+# DM on twitter if you want first dip! :) (It's not ready for beta yet, but will have yall updated!)
 ```
 
 ## Features
@@ -40,6 +41,12 @@ Authentication License Bot + Memberships Features + Renewal Features
 ## Images
 
 ![1](https://i.imgur.com/3cAHvQQ.png)
+
+## Stuff that doesn't work yet
+
+- You can't renew because I haven't implemented stripe into this auth bot.
+- You can't delete anyone key, I'll implement that soon
+- Memberships doesn' work yet, but will have that implemented into bot very soon!
 
 ## Usage
 
