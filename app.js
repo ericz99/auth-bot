@@ -13,7 +13,9 @@ const {
   token,
   colors,
   paypal_redirect,
-  mongoURI
+  mongoURI,
+  ownerRole,
+  memberRoleID
 } = require("./config.json");
 const client = new Discord.Client();
 const uuid = require("uuid/v4");
@@ -199,7 +201,7 @@ mongoose.connect(
                               const member = guild.member(msg.author);
                               if (member) {
                                 // after successfully authenicated, give user role => access for only 30 days
-                                member.addRole("488838625346191361");
+                                member.addRole(memberRoleID);
 
                                 const successEmbed = new Discord.RichEmbed()
                                   .setAuthor("Authentication Bot ( SUCCESS )")
@@ -285,7 +287,7 @@ mongoose.connect(
         ) {
           const option = msg.content.split(" ")[1];
           client.guilds.array()[0].members.forEach(member => {
-            let isStaff = member.roles.find(role => role.name === "Staff");
+            let isStaff = member.roles.find(role => role.name === ownerRole);
 
             if (member.user.id === msg.author.id && isStaff) {
               fs.readFile("config.example.json", "utf-8", (err, data) => {
@@ -331,7 +333,7 @@ mongoose.connect(
         ) {
           const option = msg.content.split(" ")[1];
           client.guilds.array()[0].members.forEach(member => {
-            let isStaff = member.roles.find(role => role.name === "Staff");
+            let isStaff = member.roles.find(role => role.name === ownerRole);
 
             if (member.user.id === msg.author.id && isStaff) {
               fs.readFile("config.example.json", "utf-8", (err, data) => {
@@ -414,9 +416,9 @@ mongoose.connect(
             // member.user.id === msg.author.id
             // msg.members.roles.has("488838473298477068")
             // console.log(member.roles.find(role => role.name === 'Dev'))
-            let isDev = member.roles.find(role => role.name === "Dev"); // check if user has role
+            let isStaff = member.roles.find(role => role.name === ownerRole); // check if user has role
 
-            if (member.user.id === msg.author.id && isDev) {
+            if (member.user.id === msg.author.id && isStaff) {
               const quantity = parseInt(msg.content.split(" ")[1]);
 
               if (quantity > 0) {
@@ -432,7 +434,7 @@ mongoose.connect(
               }
             }
 
-            if (member.user.id === msg.author.id && !isDev) {
+            if (member.user.id === msg.author.id && !isStaff) {
               return msg.author.send(
                 "Sorry, only admin are allow to use this command. Please try again! :x: "
               );
@@ -479,10 +481,7 @@ function checkDaily() {
                             );
                             if (member.user.id == userID) {
                               // remove all roles
-                              member.removeRoles([
-                                "488838625346191361",
-                                "506674080699777066"
-                              ]); // remove member role
+                              member.removeRole(memberRoleID); // remove member role
 
                               const infoEmbed = new Discord.RichEmbed()
                                 .setAuthor(

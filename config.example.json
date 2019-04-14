@@ -3,5 +3,7 @@
   "mongoURI": "mongodb://localhost/auth-db",
   "token": "",
   "paypal_redirect": "https://www.paypal.com",
-  "memberships": ["Renewal", "Lifetime", "F&F", "Beta", "Tester"]
+  "memberships": ["Renewal", "Lifetime", "F&F", "Beta", "Tester"],
+  "ownerRole": "Staff",
+  "memberRoleID": "488838625346191361"
 }

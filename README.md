@@ -37,6 +37,7 @@ Authentication License Bot + Memberships Features + Renewal Features
 - change config.example.json => config.json
 - everything in the config.json must be filled in.
   - for mongoURI, you can leave as default or create an mlab account and get a cloud DB instead of using local (its free btw).
+  - In addition, owner should set their roles, and to fetch memberRoleID, simply do \@<rolename>, eg \@member to get member role id
 
 ## Images
 
@@ -54,11 +55,9 @@ Authentication License Bot + Memberships Features + Renewal Features
 - Give the discord bot, a staff role or anything that is better than a member role
 - If user key expires, bot removes the role.
 - There's only one package and that is renewal package - one key is good up to 30 days.
-- If user key expired after 30 days, they have to renew or they will be booted off the server after 3 days(coming soon...)
 - You "OWNER" are able to delete anyone keys and boot them off the server
-- If user wants to renew just dm bot => +renew emailhere (coming soon...)
-- User can choose any email, its just gonna send them a new key after making a purchase (coming soon...)
 - OWNER can generate there own license key if they don't have.
+  - you can even put your own key if you have, just make sure it's one per line!
 
 ## Q/A
 
@@ -88,7 +87,7 @@ Follow me https://twitter.com/washed_kid on twitter!
 ```
 The MIT License (MIT)
 
-Copyright (c) 2018 Eric Zhang
+Copyright (c) 2019 Eric Zhang
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
