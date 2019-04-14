@@ -37,7 +37,7 @@ Authentication License Bot + Memberships Features + Renewal Features
 - change config.example.json => config.json
 - everything in the config.json must be filled in.
   - for mongoURI, you can leave as default or create an mlab account and get a cloud DB instead of using local (its free btw).
-  - In addition, owner should set their roles, and to fetch memberRoleID.
+  - In addition, owner should set their roles, and fetch memberRoleID.
 
 ## Images
 
