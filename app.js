@@ -15,7 +15,8 @@ const {
   paypal_redirect,
   mongoURI,
   ownerRole,
-  memberRoleID
+  memberRoleID,
+  memberRole
 } = require("./config.json");
 const client = new Discord.Client();
 const uuid = require("uuid/v4");
@@ -153,7 +154,7 @@ mongoose.connect(
             if (!err) {
               client.guilds.array()[0].members.forEach(member => {
                 let isMember = member.roles.find(
-                  role => role.name === "Member"
+                  role => role.name === memberRole
                 ); // check if user has role
                 if (member.user.id === msg.author.id && isMember) {
                   const failureEmbed = new Discord.RichEmbed()
@@ -477,7 +478,7 @@ function checkDaily() {
                         if (!err) {
                           client.guilds.array()[0].members.forEach(member => {
                             let isMember = member.roles.find(
-                              role => role.name === "Member"
+                              role => role.name === memberRole
                             );
                             if (member.user.id == userID) {
                               // remove all roles

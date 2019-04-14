@@ -38,6 +38,7 @@ Authentication License Bot + Memberships Features + Renewal Features
 - everything in the config.json must be filled in.
   - for mongoURI, you can leave as default or create an mlab account and get a cloud DB instead of using local (its free btw).
   - In addition, owner should set their roles, and fetch memberRoleID.
+- If you have already install this but there's new update, just run git pull and it should pull the latest update!
 
 ## Images
 
@@ -76,7 +77,11 @@ Authentication License Bot + Memberships Features + Renewal Features
 
 ## Errors/Bugs
 
-- If you encounter any errors/bugs, google the error/bug first, before asking me. If you can't figure it out then DM on twitter.
+```
+# If you encounter any errors/bugs, google the error/bug first, before asking me. If you can't figure it out then make an issue, and ill try my best to address it.
+
+# As of now, I do not see any Errors/bugs. Please, test this yourself before actually using it in production.
+```
 
 ## Social Media
 
