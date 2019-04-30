@@ -83,10 +83,6 @@ Authentication License Bot + Memberships Features + Renewal Features
 # As of now, I do not see any Errors/bugs. Please, test this yourself before actually using it in production.
 ```
 
-## Social Media
-
-Follow me https://twitter.com/washed_kid on twitter!
-
 ## License
 
 ```
